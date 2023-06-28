@@ -75,7 +75,7 @@ const init = function () {
                     }
                 ]).then((data) => {
                     db.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)`, [data.firstname, data.lastname, data.role.id, data.manager.id], (req, res) => {
-                        console.log('New employee was successfully added!');
+                        console.log(`Added ${data.firstname} ${data.lastname} to the database`);
                         init();
                     });
                 })
@@ -113,7 +113,7 @@ const init = function () {
                     }
                 ]).then((data) => {
                     db.query(`UPDATE employee SET ? WHERE ?`, [{role_id: data.role}, {first_name: data.employee}], (req, res) => {
-                        console.log(`Successfully updated role!`);
+                        console.log(`Updated employee's role`);
                         init();
                     });
                 })
